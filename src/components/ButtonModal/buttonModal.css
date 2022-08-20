@@ -1,0 +1,17 @@
+.modal-button {
+    margin-top: 2rem;
+    margin-right: 2rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--darktext);
+    color: var(--darktext);
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background-color, color 300ms ease;
+}
+
+.modal-button:hover {
+    background-color: var(--darktext);
+    color: var(--neutral);
+}

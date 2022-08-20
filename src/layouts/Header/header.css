@@ -1,0 +1,14 @@
+.container-buttons {    
+    display:flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1rem;}
+
+header h3 {
+    text-align: center;
+}
+
+header h3 span {
+    text-transform: uppercase;
+}

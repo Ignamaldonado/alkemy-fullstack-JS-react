@@ -1,0 +1,12 @@
+.list-container {
+    width: 95%;
+    margin: 0 auto;
+    padding:  0;
+}
+
+@media (min-width: 768px) {
+    .list-container  {
+        padding: 3rem 0;
+        width: 70rem;
+    }
+}

@@ -1,0 +1,17 @@
+
+
+.button-user {
+    background-color: var(--button);
+    padding: 1rem;
+    margin: 0.5rem;
+    width: 9rem;
+    text-align: center;
+    color: var(--white);
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 200ms ease; 
+}
+
+.button-user:hover {
+    background-color: #d53135
+}

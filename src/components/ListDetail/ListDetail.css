@@ -1,0 +1,62 @@
+.detail-container {
+    display:flex;
+    margin: 0.5rem;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    background-color: var(--neutral);
+    color: var(--darktext);
+    width: 100%;
+}
+
+.detail-text {
+    display:flex;
+    margin: 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    width: 60%;
+}
+
+@media (min-width: 768px) {
+    .detail-text {
+        display: block;
+        text-align: left;
+        margin: 1rem;
+    }
+    
+}
+
+.detail-text h4 {
+    display: block;
+    margin: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .detail-text h4 {
+        margin: 0.5rem;
+    }
+}
+
+.detail-text h4 span {
+    font-size: 1.4rem;
+}
+
+.type-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    width:24%;
+    padding-top: 1rem;
+    text-transform: capitalize;
+}
+
+.type-text.income {
+    color:green
+}
+
+.type-text.expense{
+    color: red;
+}
+
+.detail-buttons {
+    width: 33.3%;
+}
