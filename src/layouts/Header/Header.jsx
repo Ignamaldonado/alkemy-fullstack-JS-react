@@ -1,16 +1,18 @@
+import {useEffect} from 'react'
 import ButtonUser from "../../components/ButtonUser/ButtonUser"
 import Form from "../../components/Form/Form"
 import './header.css'
 
 const Header = ({ user, setUser, users, guest }) => {
 
-  let name;
+  let name = 'guest'
 
-  if(Object.keys(user).length == 0) {
-      name = guest.name
-  } else {
-    name = user.name
+  useEffect(() => {
+    if(Object.keys(user).length > 0) {
+      name = user.name
   }
+  }, [user])
+
 
   return (
     <header>
