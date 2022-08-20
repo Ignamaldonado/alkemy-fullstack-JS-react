@@ -1,16 +1,17 @@
-import useInput from '../../../hooks/useInput'
+import useField from '../../../hooks/useField'
+import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
-const LoginForm = ({ handleToggle }) => {
+const LoginForm = ({ handleToggle, setUser, users }) => {
 
-    //first ID, then label, then placeholder, then input type
-    const [ email, InputEmail ] = useInput('email', 'Email', 'Enter your email', 'email')
-    const [password, InputPassword] = useInput('password', 'Password', 'Enter your password', 'password')
+    const email = useField()
+    const password = useField()
+
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log('anda el Login')
-        console.log(email + ' ' + password)
+        
+        console.log(users)
     }
 
   return (
@@ -20,8 +21,8 @@ const LoginForm = ({ handleToggle }) => {
     >
         <div className='shadow'>
             <h2>Login</h2> 
-            <InputEmail />
-            <InputPassword />
+            <Input id={'email'} label={'email'} type={'email'} placeholder={'Enter your email'} value={email.value} setValue={email.onChange}/>
+            <Input id={'password'} label={'password'} type={'password'} placeholder={'Enter your password'} value={password.value} setValue={password.onChange}/>
             <ButtonModal name={'login'}/>
         </div>
     </form>

@@ -13,14 +13,14 @@ const DeleteForm = ({ handleToggle }) => {
     onSubmit={handleDelete}
     >
         <div className='shadow'>
-            <h2>Estas seguro que deseas borrar?</h2> 
+            <h2>Are you sure you want to delete?</h2> 
 
-            <ButtonModal name={'Confirmar'}/>
+            <ButtonModal name={'Confirm'}/>
 
             <button className='modal-button'
             onClick={handleToggle}
             >
-                Cancelar
+                Cancel
             </button>
         </div>
     </form>

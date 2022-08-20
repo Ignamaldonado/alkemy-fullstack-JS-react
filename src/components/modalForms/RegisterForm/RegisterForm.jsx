@@ -1,17 +1,18 @@
-import useInput from '../../../hooks/useInput'
+import useField from '../../../hooks/useField'
+import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
 const RegisterForm = ({ handleToggle }) => {
 
-    //first ID, then label, then placeholder, then input type
-    const [ name , InputName ] = useInput('name', 'Name', 'Enter your name', 'text') 
-    const [ email, InputEmail ] = useInput('email', 'Email', 'Enter your email', 'email')
-    const [password, InputPassword] = useInput('password', 'Password', 'Enter your password', 'password')
+    const name = useField()
+    const email = useField()
+    const password = useField()
+
 
     const handleRegister = (e) => {
         e.preventDefault();
         console.log('anda el register')
-        console.log(name + ' ' + email + ' ' + password)
+        
     }
 
   return (
@@ -21,9 +22,9 @@ const RegisterForm = ({ handleToggle }) => {
     >
         <div className='shadow'>
             <h2>Register</h2> 
-            <InputName />
-            <InputEmail />
-            <InputPassword />
+            <Input id={'name'} label={'name'} type={'text'} placeholder={'Enter your name'} value={name.value} setValue={name.onChange}/>
+            <Input id={'email'} label={'email'} type={'email'} placeholder={'Enter your email'} value={email.value} setValue={email.onChange}/>
+            <Input id={'password'} label={'password'} type={'password'} placeholder={'Enter your password'} value={password.value} setValue={password.onChange}/>
             <ButtonModal name={'register'}/>
         </div>
     </form>
