@@ -7,7 +7,7 @@ import ExpenseForm from '../modalForms/ExpenseForm/ExpenseForm'
 import EditForm from '../modalForms/EditForm/EditForm'
 import DeleteForm from '../modalForms/DeleteForm/DeleteForm'
 
-const Modal = ({ setToggle, form, setUser, users }) => {
+const Modal = ({ setToggle, form, setUser, users, setRegisterSuccess }) => {
 
     const handleToggle = () => {
         setToggle();
@@ -25,37 +25,37 @@ const Modal = ({ setToggle, form, setUser, users }) => {
 
         {form == 1 && 
         <>
-            <RegisterForm  handleToggle={handleToggle} users={users}/>
+            <RegisterForm  handleToggle={handleToggle} users={users} setRegisterSuccess={setRegisterSuccess}/>
         </>
         }
 
         {form == 2 && 
         <>
-            <LoginForm handleToggle={handleToggle} setUser={setUser} users={users}/>
+            <LoginForm handleToggle={handleToggle} setUser={setUser} users={users} setRegisterSuccess={setRegisterSuccess}/>
         </>
         }
 
         {form == 3 && 
         <>
-            <IncomeForm handleToggle={handleToggle}/>
+            <IncomeForm handleToggle={handleToggle} setRegisterSuccess={setRegisterSuccess}/>
         </>
         }
 
         {form == 4 && 
         <>
-            <ExpenseForm handleToggle={handleToggle}/>
+            <ExpenseForm handleToggle={handleToggle} setRegisterSuccess={setRegisterSuccess}/>
         </>
         } 
 
         {form == 5 && 
         <>
-            <EditForm handleToggle={handleToggle}/>
+            <EditForm handleToggle={handleToggle} setRegisterSuccess={setRegisterSuccess}/>
         </>
         } 
 
         {form == 6 && 
         <>
-            <DeleteForm handleToggle={handleToggle}/>
+            <DeleteForm handleToggle={handleToggle} setRegisterSuccess={setRegisterSuccess}/>
         </>
         }   
     </div>

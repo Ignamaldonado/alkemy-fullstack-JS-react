@@ -5,6 +5,7 @@ import './header.css'
 
 const Header = ({ user, setUser, users, guest, balance }) => {
 
+  const [registerSuccess, setRegisterSuccess] = useState(false)
   const [name, setName] = useState('guest')
 
 
@@ -17,9 +18,10 @@ const Header = ({ user, setUser, users, guest, balance }) => {
   return (
     <header>
         <div className='container-buttons'>
-            <ButtonUser name={'Register'} register={true} setUser={setUser} users={users} />
-            <ButtonUser name={'Login'} register={false} setUser={setUser} users={users}/>
+            <ButtonUser name={'Register'} register={true} setUser={setUser} users={users} setRegisterSuccess={setRegisterSuccess}/>
+            <ButtonUser name={'Login'} register={false} setUser={setUser} users={users} setRegisterSuccess={setRegisterSuccess}/>
         </div>
+        {registerSuccess && <h3>Your register was a success!!</h3> }
         <h3>You are currently in the app as: <span>{name}</span></h3>
         <Form balance={balance}/>
     </header>

@@ -4,19 +4,15 @@ import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 import axios from 'axios'
 
-const RegisterForm = ({ handleToggle, users }) => {
+const RegisterForm = ({ handleToggle, users, setRegisterSuccess }) => {
 
   const userPostURL = 'http://localhost:3001/api/users/create'
 
   const newUserPost = async(object) => {
-    fetch('http://localhost:3001/api/users/create',{
+    fetch(userPostURL,{
     method: 'POST', 
     headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({
-      name:'elchachi',
-      email:'elchachi@gmail.com',
-      password:'47454024a'
-    })
+    body: JSON.stringify(object)
     })
     .then(response => console.log(response)) 
   }
@@ -71,10 +67,16 @@ const RegisterForm = ({ handleToggle, users }) => {
         email: email.value,
         password: password.value,
       })
-
-      newUserPost(newUser)
     }
     
+    useEffect(() => {
+      if(Object.keys(newUser).length > 0) {
+        newUserPost(newUser)
+        handleToggle()
+        setRegisterSuccess(true)
+      }
+    }, [newUser])
+
 
   return (
     <form 

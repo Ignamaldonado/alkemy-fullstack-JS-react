@@ -3,7 +3,7 @@ import useField from '../../../hooks/useField'
 import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
-const LoginForm = ({ handleToggle, setUser, users }) => {
+const LoginForm = ({ handleToggle, setUser, users, setRegisterSuccess}) => {
 
     const email = useField()
     const password = useField()
@@ -17,6 +17,7 @@ const LoginForm = ({ handleToggle, setUser, users }) => {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        setRegisterSuccess(false)
         const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/
         const emailRegExp = /\S+@\S+\.\S+/
         if([ email.value, password.value ].includes('')) {

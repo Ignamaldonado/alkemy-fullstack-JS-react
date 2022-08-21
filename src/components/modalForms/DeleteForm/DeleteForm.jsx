@@ -1,9 +1,10 @@
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
-const DeleteForm = ({ handleToggle }) => {
+const DeleteForm = ({ handleToggle, setRegisterSuccess }) => {
   
     const handleDelete = (e) => {
         e.preventDefault();
+        setRegisterSuccess(false)
         console.log('confirmaste un borrado')
     }
 

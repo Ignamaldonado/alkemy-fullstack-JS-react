@@ -9,6 +9,7 @@ const Form = ({ balance }) => {
             <div className='balance'>
                 {balance}
             </div>
+            Add income/expense
             <div className='buttons-container'>
                 <ButtonBalance name={'Income'} income={true}/>
                 <ButtonBalance name={'Expense'} income={false}/>
