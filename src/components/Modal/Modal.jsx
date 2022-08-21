@@ -25,7 +25,7 @@ const Modal = ({ setToggle, form, setUser, users }) => {
 
         {form == 1 && 
         <>
-            <RegisterForm  handleToggle={handleToggle}/>
+            <RegisterForm  handleToggle={handleToggle} users={users}/>
         </>
         }
 

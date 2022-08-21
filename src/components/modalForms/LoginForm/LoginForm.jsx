@@ -17,36 +17,36 @@ const LoginForm = ({ handleToggle, setUser, users }) => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+        const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/
         const emailRegExp = /\S+@\S+\.\S+/
         if([ email.value, password.value ].includes('')) {
             setError(true)
             return
         }
+        setError(false)
         if(emailRegExp.test(email.value) === false) {
             setEmailError(true)
             return
         }
+        setEmailError(false)
         if(passwordRegExp.test(password.value) === false) {
             setPasswordError(true)
             return
-        }
-        setError(false)
-        setEmailError(false)
+        }   
         setPasswordError(false)
-        let findedUser = users.find(user => user.email == email.value) 
+        let findedUser = users.find(user => user.email.toLowerCase() == email.value.toLowerCase()) 
         if (!findedUser) {
             setEmailNotFound(true)
             return
         }
         setEmailNotFound(false)
-        let successLogin = users.find(user => user.password == findedUser.password)
+        let successLogin = users.find(user => user.password == password.value)
         if(!successLogin) {
             setPasswordInvalid(true)
             return
         }
         setPasswordInvalid(false)
-        setUser = successLogin
+        setUser(successLogin)
         handleToggle()        
     }
 
@@ -67,7 +67,7 @@ const LoginForm = ({ handleToggle, setUser, users }) => {
 
             <Input id={'password'} label={'password'} type={'password'} placeholder={'Enter your password'} value={password.value} setValue={password.onChange}/>
 
-            {passwordError && <h3>password has to be minimum 8 characters long, 1 number and 1 letter</h3>}
+            {passwordError && <h3>password has to be between 8 and 16 characters long, at least one number and one letter</h3>}
 
             <ButtonModal name={'login'}/>
         </div>

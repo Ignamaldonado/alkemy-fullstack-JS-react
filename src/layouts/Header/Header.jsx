@@ -1,18 +1,18 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import ButtonUser from "../../components/ButtonUser/ButtonUser"
 import Form from "../../components/Form/Form"
 import './header.css'
 
-const Header = ({ user, setUser, users, guest }) => {
+const Header = ({ user, setUser, users, guest, balance }) => {
 
-  let name = 'guest'
+  const [name, setName] = useState('guest')
+
 
   useEffect(() => {
     if(Object.keys(user).length > 0) {
-      name = user.name
+      setName(user.name)
   }
   }, [user])
-
 
   return (
     <header>
@@ -21,7 +21,7 @@ const Header = ({ user, setUser, users, guest }) => {
             <ButtonUser name={'Login'} register={false} setUser={setUser} users={users}/>
         </div>
         <h3>You are currently in the app as: <span>{name}</span></h3>
-        <Form />
+        <Form balance={balance}/>
     </header>
   )
 }

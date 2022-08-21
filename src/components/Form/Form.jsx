@@ -1,13 +1,13 @@
 import './form.css'
 import ButtonBalance from '../ButtonBalance/ButtonBalance'
 
-const Form = () => {
+const Form = ({ balance }) => {
   return (
     <div className='form-class'>
         <div className='form shadow'>
             Actual balance
             <div className='balance'>
-                0
+                {balance}
             </div>
             <div className='buttons-container'>
                 <ButtonBalance name={'Income'} income={true}/>
