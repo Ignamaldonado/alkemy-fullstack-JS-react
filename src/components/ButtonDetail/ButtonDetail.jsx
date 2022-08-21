@@ -2,7 +2,7 @@ import './buttonDetail.css'
 import useActive from '../../hooks/useActive'
 import Modal from '../Modal/Modal'
 
-const ButtonDetail = ({ name, style, edit }) => {
+const ButtonDetail = ({ name, style, edit, id, setListenBalance }) => {
 
     let form;
     const {active, setToggle} = useActive()
@@ -22,7 +22,7 @@ const ButtonDetail = ({ name, style, edit }) => {
         {name}
     </div>
 
-    {active && <Modal setToggle={setToggle} form={form}/>}
+    {active && <Modal setToggle={setToggle} form={form} balanceId={id} setListenBalance={setListenBalance}/>}
 
     </>
   )

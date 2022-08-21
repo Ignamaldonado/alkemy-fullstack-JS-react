@@ -1,12 +1,37 @@
+import {useState, useEffect} from 'react'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
-const DeleteForm = ({ handleToggle, setRegisterSuccess }) => {
+const DeleteForm = ({ handleToggle, balanceId, setListenBalance }) => {
   
+    const id = balanceId 
+    let balanceDeleteURL = `http://localhost:3001/api/balances/delete/${id}`
+    
+    const [confirm, setConfirm] = useState(false)
+
+    const deleteBalance = async() => {
+        fetch(balanceDeleteURL,{
+        method: 'DELETE', 
+        })
+        .then(response => {
+          console.log(response)
+          setConfirm(false)
+          setListenBalance(true)
+        }) 
+    }
+
     const handleDelete = (e) => {
         e.preventDefault();
-        setRegisterSuccess(false)
+        setConfirm(true)
         console.log('confirmaste un borrado')
     }
+
+    useEffect(() => {
+        if(confirm) {
+            deleteBalance()
+        }
+    }, [confirm])
+
+
 
     return (
     <form 

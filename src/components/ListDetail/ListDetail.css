@@ -60,3 +60,13 @@
 .detail-buttons {
     width: 33.3%;
 }
+
+.date-detail {
+    visibility: hidden
+}
+
+@media (min-width: 768px) {
+    .date-detail {
+        visibility: visible
+    }
+}

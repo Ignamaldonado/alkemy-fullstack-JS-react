@@ -1,20 +1,35 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useField from '../../../hooks/useField'
 import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
-const EditForm = ({ handleToggle, setRegisterSuccess }) => {
+const EditForm = ({ handleToggle, balanceId, setListenBalance }) => {
+    let id = balanceId
+    let balancePutURL = `http://localhost:3001/api/balances/update/${id}`
 
     const amount = useField()
     const concept = useField()
-
+    
     const [error, setError] = useState(false)
     const [amountError, setAmountError] = useState(false)
     const [conceptError, setConceptError] = useState(false)
+    const [updatedBalance, setUpdatedBalance] = useState({})
+
+    const editBalancePut = async(object) => {
+      fetch(balancePutURL,{
+      method: 'PUT', 
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(object)
+      })
+      .then(response => {
+        console.log(response)
+        setUpdatedBalance({})
+        setListenBalance(true)
+      }) 
+    }
 
     const handleEdit = (e) => {
         e.preventDefault();
-        setRegisterSuccess(false)
         const amountRegExp = /^[+]?\d+([.]\d+)?$/
         const conceptRegExp = /^[A-Za-z]+$/
         if([amount.value, concept.value].includes('')) {
@@ -32,9 +47,19 @@ const EditForm = ({ handleToggle, setRegisterSuccess }) => {
           return
         }
         setConceptError(false)
-        console.log('is validated')
-
+        
+        setUpdatedBalance({
+          amount: amount.value,
+          concept: concept.value
+        })
     }
+
+    useEffect(() => {
+      if(Object.keys(updatedBalance).length > 0) {
+        editBalancePut(updatedBalance)
+        handleToggle()
+      }
+    }, [updatedBalance])
 
   return (
     <form 
@@ -48,7 +73,7 @@ const EditForm = ({ handleToggle, setRegisterSuccess }) => {
             {amountError && <h3>The amount has to be a positive number</h3>}
             <Input id={'concept'} label={'concept'} type={'text'} placeholder={'Enter a concept'} value={concept.value} setValue={concept.onChange}/>
             {conceptError && <h3>The concept has to be a single word</h3>}
-            <ButtonModal name={'Add'}/>
+            <ButtonModal name={'Edit'}/>
         </div>
     </form>
   )

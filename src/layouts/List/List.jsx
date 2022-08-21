@@ -1,7 +1,7 @@
 import ListDetail from "../../components/ListDetail/ListDetail"
 import './list.css'
 
-const List = ({ balances }) => {
+const List = ({ balances, setListenBalance }) => {
   
 
   balances.map(balance => {
@@ -15,7 +15,7 @@ const List = ({ balances }) => {
   return (
     <div className='list-container '>
         <div className='shadow'>
-            {balances.map(balance => <ListDetail key={balance.id} style={balance.type_id} name={balance.type_id} amount={balance.amount} concept={balance.concept}/> )}
+            {balances.map(balance => <ListDetail key={balance.id} style={balance.type_id} name={balance.type_id} amount={balance.amount} concept={balance.concept} date={balance.date} id={balance.id} setListenBalance={setListenBalance}/> )}
             
         </div>
     </div>

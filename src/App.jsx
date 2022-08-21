@@ -66,7 +66,7 @@ function App() {
   return (
     <>
     <Header user={user} setUser={setUser} users={users} guest={guest} balance={balance} setListenBalance={setListenBalance}/>
-    <List balances={userBalance}/>
+    <List balances={userBalance} setListenBalance={setListenBalance}/>
     </>
   )
 }
