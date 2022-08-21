@@ -1,42 +1,79 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useField from '../../../hooks/useField'
 import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
-const ExpenseForm = ({ handleToggle, setRegisterSuccess }) => {
+const ExpenseForm = ({ handleToggle, user, guest, setListenBalance }) => {
+  const typeId = 2
+  let userId;
+  let guestId = guest.id
+  let loggedId = user.id
 
-    const amount = useField()
-    const concept = useField()
-    const date = useField()
+  if(loggedId) {
+    userId = loggedId
+  } else {
+    userId = guestId
+  }
 
-    const [error, setError] = useState(false)
-    const [amountError, setAmountError] = useState(false)
-    const [conceptError, setConceptError] = useState(false)
-    
+  const [newBalance, setNewBalance] = useState({})
 
+  const amount = useField()
+  const concept = useField()
+  const date = useField()
 
-    const handleExpense = (e) => {
-        e.preventDefault()
-        setRegisterSuccess(false)
-        const amountRegExp = /^[+]?\d+([.]\d+)?$/
-        const conceptRegExp = /^[A-Za-z]+$/
-        if([amount.value, concept.value, date.value].includes('')) {
-          setError(true)
-          return
-        }
-        setError(false)
-        if(amountRegExp.test(amount.value) === false) {
-          setAmountError(true)
-          return
-        }
-        setAmountError(false)
-        if(conceptRegExp.test(concept.value) === false) {
-          setConceptError(true)
-          return
-        }
-        setConceptError(false)
-        console.log('is validated')
+  const [error, setError] = useState(false)
+  const [amountError, setAmountError] = useState(false)
+  const [conceptError, setConceptError] = useState(false)
+  
+  const balancePostURL = 'http://localhost:3001/api/balances/create'
+  const newBalancePost = async(object) => {
+    fetch(balancePostURL,{
+    method: 'POST', 
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(object)
+    })
+    .then(response => {
+      console.log(response)
+      setNewBalance({})
+      setListenBalance(true)
+    }) 
+  }
+
+  const handleExpense = (e) => {
+      e.preventDefault();
+      const amountRegExp = /^[+]?\d+([.]\d+)?$/
+      const conceptRegExp = /^[A-Za-z]+$/
+      if([amount.value, concept.value, date.value].includes('')) {
+        setError(true)
+        return
+      }
+      setError(false)
+      if(amountRegExp.test(amount.value) === false) {
+        setAmountError(true)
+        return
+      }
+      setAmountError(false)
+      if(conceptRegExp.test(concept.value) === false) {
+        setConceptError(true)
+        return
+      }
+      setConceptError(false)
+      
+      setNewBalance({
+          amount: amount.value,
+          concept: concept.value,
+          date: date.value,
+          type_id: typeId,
+          user_id: userId
+      })
+  }
+
+  useEffect(() => {
+    if(Object.keys(newBalance).length > 0) {
+      newBalancePost(newBalance)
+      handleToggle()
     }
+  }, [newBalance])
 
   return (
     <form 

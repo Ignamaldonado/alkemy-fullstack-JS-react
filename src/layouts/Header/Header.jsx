@@ -3,7 +3,7 @@ import ButtonUser from "../../components/ButtonUser/ButtonUser"
 import Form from "../../components/Form/Form"
 import './header.css'
 
-const Header = ({ user, setUser, users, guest, balance }) => {
+const Header = ({ user, setUser, users, guest, balance, setListenBalance }) => {
 
   const [registerSuccess, setRegisterSuccess] = useState(false)
   const [name, setName] = useState('guest')
@@ -23,7 +23,7 @@ const Header = ({ user, setUser, users, guest, balance }) => {
         </div>
         {registerSuccess && <h3>Your register was a success!!</h3> }
         <h3>You are currently in the app as: <span>{name}</span></h3>
-        <Form balance={balance}/>
+        <Form balance={balance} user={user} guest={guest} setListenBalance={setListenBalance}/>
     </header>
   )
 }

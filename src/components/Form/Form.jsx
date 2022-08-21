@@ -1,7 +1,7 @@
 import './form.css'
 import ButtonBalance from '../ButtonBalance/ButtonBalance'
 
-const Form = ({ balance }) => {
+const Form = ({ balance, user, guest, setListenBalance }) => {
   return (
     <div className='form-class'>
         <div className='form shadow'>
@@ -11,8 +11,8 @@ const Form = ({ balance }) => {
             </div>
             Add income/expense
             <div className='buttons-container'>
-                <ButtonBalance name={'Income'} income={true}/>
-                <ButtonBalance name={'Expense'} income={false}/>
+                <ButtonBalance name={'Income'} income={true} user={user} guest={guest} setListenBalance={setListenBalance}/>
+                <ButtonBalance name={'Expense'} income={false} user={user} guest={guest} setListenBalance={setListenBalance}/>
             </div>
         </div>
     </div>

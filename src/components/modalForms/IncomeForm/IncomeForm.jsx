@@ -1,9 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useField from '../../../hooks/useField'
 import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 
-const IncomeForm = ({ handleToggle, setRegisterSuccess }) => {
+const IncomeForm = ({ handleToggle, user, guest, setListenBalance }) => {
+
+    const typeId = 1
+    let userId;
+    let guestId = guest.id
+    let loggedId = user.id
+
+    if(loggedId) {
+      userId = loggedId
+    } else {
+      userId = guestId
+    }
+
+    const [newBalance, setNewBalance] = useState({})
 
     const amount = useField()
     const concept = useField()
@@ -13,11 +26,22 @@ const IncomeForm = ({ handleToggle, setRegisterSuccess }) => {
     const [amountError, setAmountError] = useState(false)
     const [conceptError, setConceptError] = useState(false)
     
-
+    const balancePostURL = 'http://localhost:3001/api/balances/create'
+    const newBalancePost = async(object) => {
+      fetch(balancePostURL,{
+      method: 'POST', 
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(object)
+      })
+      .then(response => {
+        console.log(response)
+        setNewBalance({})
+        setListenBalance(true)
+      }) 
+    }
 
     const handleIncome = (e) => {
         e.preventDefault();
-        setRegisterSuccess(false)
         const amountRegExp = /^[+]?\d+([.]\d+)?$/
         const conceptRegExp = /^[A-Za-z]+$/
         if([amount.value, concept.value, date.value].includes('')) {
@@ -35,8 +59,23 @@ const IncomeForm = ({ handleToggle, setRegisterSuccess }) => {
           return
         }
         setConceptError(false)
-        console.log('is validated')
+        
+        setNewBalance({
+            amount: amount.value,
+            concept: concept.value,
+            date: date.value,
+            type_id: typeId,
+            user_id: userId
+        })
     }
+
+    useEffect(() => {
+      if(Object.keys(newBalance).length > 0) {
+        newBalancePost(newBalance)
+        handleToggle()
+      }
+    }, [newBalance])
+
 
   return (
     <form 
