@@ -4,7 +4,7 @@ import ButtonModal from '../../ButtonModal/ButtonModal'
 const DeleteForm = ({ handleToggle, balanceId, setListenBalance }) => {
   
     const id = balanceId 
-    let balanceDeleteURL = `http://localhost:3001/api/balances/delete/${id}`
+    let balanceDeleteURL = `https://bills-controller-api.herokuapp.com/api/balances/delete/${id}`
     
     const [confirm, setConfirm] = useState(false)
 

@@ -25,7 +25,7 @@ const ExpenseForm = ({ handleToggle, user, guest, setListenBalance }) => {
   const [amountError, setAmountError] = useState(false)
   const [conceptError, setConceptError] = useState(false)
   
-  const balancePostURL = 'http://localhost:3001/api/balances/create'
+  const balancePostURL = 'https://bills-controller-api.herokuapp.com/api/balances/create'
   const newBalancePost = async(object) => {
     fetch(balancePostURL,{
     method: 'POST', 

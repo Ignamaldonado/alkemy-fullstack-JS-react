@@ -5,7 +5,7 @@ import ButtonModal from '../../ButtonModal/ButtonModal'
 
 const EditForm = ({ handleToggle, balanceId, setListenBalance }) => {
     let id = balanceId
-    let balancePutURL = `http://localhost:3001/api/balances/update/${id}`
+    let balancePutURL = `https://bills-controller-api.herokuapp.com/api/balances/update/${id}`
 
     const amount = useField()
     const concept = useField()

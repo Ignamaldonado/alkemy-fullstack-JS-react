@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const RegisterForm = ({ handleToggle, users, setRegisterSuccess }) => {
 
-  const userPostURL = 'http://localhost:3001/api/users/create'
+  const userPostURL = 'https://bills-controller-api.herokuapp.com/api/users/create'
 
   const newUserPost = async(object) => {
     fetch(userPostURL,{

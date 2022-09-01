@@ -6,8 +6,8 @@ function App() {
   let incomeAmount = 0
   let expenseAmount = 0
 
-  const usersURL = 'http://localhost:3001/api/users'
-  const balanceURL = 'http://localhost:3001/api/balances'
+  const usersURL = 'https://bills-controller-api.herokuapp.com/api/users'
+  const balanceURL = 'https://bills-controller-api.herokuapp.com/api/balances'
 
   const [users, setUsers] = useState([])
   const [balances, setBalances] = useState([])
@@ -15,6 +15,7 @@ function App() {
   const [user, setUser] = useState({})
   const [guest, setGuest] = useState({})
   const [listenBalance, setListenBalance] = useState(false)
+  const [loader, setLoader] = useState(false)
 
   const usersPetitionGet = async() => {
     fetch(usersURL)
@@ -26,10 +27,12 @@ function App() {
       }
         
   const balancesPetitionGet = async() => {
+    setLoader(true)
     fetch(balanceURL)
       .then(res => res.json())
         .then(balances => {
           setBalances(balances.data)
+          setLoader(false)
         })
       }
 
@@ -66,7 +69,7 @@ function App() {
   return (
     <>
     <Header user={user} setUser={setUser} users={users} guest={guest} balance={balance} setListenBalance={setListenBalance}/>
-    <List balances={userBalance} setListenBalance={setListenBalance}/>
+    <List balances={userBalance} setListenBalance={setListenBalance} loader={loader}/>
     </>
   )
 }
