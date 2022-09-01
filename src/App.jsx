@@ -41,11 +41,11 @@ function App() {
     balancesPetitionGet()
     if(listenBalance) {
       setListenBalance(false)
-    }
+    } 
  }, [listenBalance])
 
  useEffect(() => {
-  if(balances.length >0) {
+  
   if(Object.keys(user).length > 0) {
     let newBalance = balances.filter(balance => balance.user_id == user.id)
     setUserBalance(newBalance)
@@ -53,7 +53,7 @@ function App() {
     let newBalance = balances.filter(balance => balance.user_id == guest.id) 
     setUserBalance(newBalance)
   }
-  }
+
  }, [balances, user])
 
   const incomeFilter = userBalance.filter(balance => balance.type_id == 1)

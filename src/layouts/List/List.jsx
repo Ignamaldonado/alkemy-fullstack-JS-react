@@ -14,7 +14,7 @@ const List = ({ balances, setListenBalance }) => {
 
   return (
     <div className='list-container '>
-        <div className='shadow'>
+        <div className='shadow overflow'>
             {balances.map(balance => <ListDetail key={balance.id} style={balance.type_id} name={balance.type_id} amount={balance.amount} concept={balance.concept} date={balance.date} id={balance.id} setListenBalance={setListenBalance}/> )}
             
         </div>

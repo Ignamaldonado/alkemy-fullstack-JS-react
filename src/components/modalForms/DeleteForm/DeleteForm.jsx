@@ -22,7 +22,7 @@ const DeleteForm = ({ handleToggle, balanceId, setListenBalance }) => {
     const handleDelete = (e) => {
         e.preventDefault();
         setConfirm(true)
-        console.log('confirmaste un borrado')
+    
     }
 
     useEffect(() => {

@@ -2,6 +2,8 @@
     width: 95%;
     margin: 0 auto;
     padding:  0;
+    
+   
 }
 
 @media (min-width: 768px) {
@@ -9,4 +11,14 @@
         padding: 3rem 0;
         width: 70rem;
     }
+}
+
+.overflow{
+    height: 30rem;
+    overflow: scroll;
+    overflow-x:hidden
+}
+
+.overflow::-webkit-scrollbar {
+    display: none;
 }
