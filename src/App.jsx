@@ -16,6 +16,7 @@ function App() {
   const [guest, setGuest] = useState({})
   const [listenBalance, setListenBalance] = useState(false)
   const [loader, setLoader] = useState(false)
+  const [newUser, setNewUser] = useState({})
 
   const usersPetitionGet = async() => {
     fetch(usersURL)
@@ -39,6 +40,10 @@ function App() {
   useEffect(() => {
      usersPetitionGet()
   }, [])
+
+  useEffect(() => {
+    usersPetitionGet()
+ }, [newUser])
 
   useEffect(() => {
     balancesPetitionGet()
@@ -68,7 +73,7 @@ function App() {
 
   return (
     <>
-    <Header user={user} setUser={setUser} users={users} guest={guest} balance={balance} setListenBalance={setListenBalance}/>
+    <Header user={user} setUser={setUser} users={users} guest={guest} balance={balance} setListenBalance={setListenBalance} newUser={newUser} setNewUser={setNewUser}/>
     <List balances={userBalance} setListenBalance={setListenBalance} loader={loader}/>
     </>
   )

@@ -2,7 +2,7 @@ import './buttonUser.css'
 import useActive from '../../hooks/useActive'
 import Modal from '../Modal/Modal'
 
-const ButtonUser = ({ name, register, setUser, users, setRegisterSuccess }) => {
+const ButtonUser = ({ name, register, setUser, users, setRegisterSuccess ,newUser , setNewUser}) => {
 
     let form;
     const {active, setToggle} = useActive()
@@ -22,7 +22,7 @@ const ButtonUser = ({ name, register, setUser, users, setRegisterSuccess }) => {
         {name}
     </div>
 
-   {active && <Modal setToggle={setToggle} form={form} setUser={setUser} users={users} setRegisterSuccess={setRegisterSuccess}/>}
+   {active && <Modal setToggle={setToggle} form={form} setUser={setUser} users={users} setRegisterSuccess={setRegisterSuccess} newUser={newUser} setNewUser={setNewUser}/>}
     
     </>
   )

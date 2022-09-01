@@ -7,7 +7,7 @@ import ExpenseForm from '../modalForms/ExpenseForm/ExpenseForm'
 import EditForm from '../modalForms/EditForm/EditForm'
 import DeleteForm from '../modalForms/DeleteForm/DeleteForm'
 
-const Modal = ({ setToggle, form, setUser, users, setRegisterSuccess, user, guest, setListenBalance, balanceId }) => {
+const Modal = ({ setToggle, form, setUser, users, setRegisterSuccess, user, guest, setListenBalance, balanceId, newUser, setNewUser}) => {
 
     const handleToggle = () => {
         setToggle();
@@ -25,7 +25,7 @@ const Modal = ({ setToggle, form, setUser, users, setRegisterSuccess, user, gues
 
         {form == 1 && 
         <>
-            <RegisterForm  handleToggle={handleToggle} users={users} setRegisterSuccess={setRegisterSuccess}/>
+            <RegisterForm  handleToggle={handleToggle} users={users} setRegisterSuccess={setRegisterSuccess} newUser={newUser} setNewUser={setNewUser}/>
         </>
         }
 

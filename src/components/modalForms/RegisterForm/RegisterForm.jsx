@@ -4,7 +4,7 @@ import Input from '../../Input/Input'
 import ButtonModal from '../../ButtonModal/ButtonModal'
 import axios from 'axios'
 
-const RegisterForm = ({ handleToggle, users, setRegisterSuccess }) => {
+const RegisterForm = ({ handleToggle, users, setRegisterSuccess, newUser, setNewUser}) => {
 
   const userPostURL = 'https://bills-controller-api.herokuapp.com/api/users/create'
 
@@ -17,7 +17,7 @@ const RegisterForm = ({ handleToggle, users, setRegisterSuccess }) => {
     .then(response => console.log(response)) 
   }
 
-  const [newUser, setNewUser] = useState({})
+  
 
   const [error, setError] = useState(false)
   const [nameError, setNameError] = useState(false)
